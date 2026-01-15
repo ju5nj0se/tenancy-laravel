@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TenantController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,3 +14,7 @@ foreach (config('tenancy.central_domains') as $domain) {
         // your actual central routes
     });
 }
+
+Route::get('/tenant', [TenantController::class, 'index'])->name('tenant.index');
+Route::post('/store', [TenantController::class, 'store'])->name('tenant.store');
+
